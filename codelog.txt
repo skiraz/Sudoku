@@ -1,0 +1,81 @@
+def recursive_Gen(self, index, valids, length, blocks):
+
+        if abs(index) > length-1:
+            return 1
+        if len(np.argwhere(self.sudoko == 0)) == 0:
+            return
+        idx = valids[index]
+        # if not (str(valids[index]) in self.invalid_at_index.keys()):
+        #     self.invalid_at_index[f'{valids[index]}'] = []
+        no_value = True
+        for i in np.random.choice(range(1, 10), 9, replace=False):
+            # if i in self.invalid_at_index[f"{valids[index]}"]:
+            #     continue
+            if self.check_value_valid(tuple(idx), i):
+                self.set_value(tuple(idx), i)
+                blocks[idx[0]][idx[1]].value = i
+
+                no_value = False
+                # self.invalid_at_index[f"{valids[index]}"].append(i)
+                break
+            # else:
+            #     self.invalid_at_index[f"{valids[index]}"].append(i)
+
+        # self.counter += 1
+        # if self.counter == 30:
+        #     return
+        if no_value:
+            self.set_value(idx, 0)
+            blocks[idx[0]][idx[1]].value = 0
+            self.index -= 1
+            self.recursive_Gen(self.index, valids, length, blocks)
+        else:
+            self.index += 1
+            self.recursive_Gen(self.index, valids, length, blocks)
+
+
+
+# last generation algorithm 
+def recursive_Gen(self, blocks):
+        #stop condition
+        if len(argwhere(self.sudoko == 0)) == 0:
+            return
+        
+        square_index_key = str(self.valids[self.index])
+        square_index_tuple = tuple(self.valids[self.index])
+        no_value = True
+
+        if not (square_index_key in self.invalid_at_index.keys()):
+            self.invalid_at_index[f'{self.valids[self.index]}'] = []
+
+        
+
+        for i in choice(range(1, 10), 9, replace=False):
+            if i in self.invalid_at_index[square_index_key]:
+                continue
+            if self.check_value_valid(square_index_tuple, i):
+                self.set_value(square_index_tuple, i)
+                # this can be optimized by making the self.sudoku in the box class
+                #=================
+                blocks[self.valids[self.index][0]][self.valids[self.index][1]].value = i
+                #=================
+                no_value = False
+                break
+            else:
+                # blocks[self.valids[self.index][0]][self.valids[self.index][1]].value = i
+                # blocks[self.valids[self.index][0]][self.valids[self.index][1]].value = 0
+                self.invalid_at_index[square_index_key].append(i)
+        # delay(80)
+
+        if no_value:
+            blocks[self.valids[self.index][0]][self.valids[self.index][1]].value = 0
+            self.set_value(square_index_tuple, 0)
+            self.invalid_at_index[square_index_key] = []
+            self.index -= 1
+            self.recursive_Gen(blocks)
+
+        else:
+            self.invalid_at_index[square_index_key].append(i)
+            self.index += 1
+            self.recursive_Gen(blocks)
+        

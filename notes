@@ -1,0 +1,42 @@
+notes :
+
+* make blocks just in refresh
+* make sudoku matrix have original values after generation and check if input equals value in matrix for errors 
+
+
+
+
+1) Solving a sudoku:
+    for each cell :
+    keep trying a number from 1-9 until it does not break any sudoku rule
+
+2) Generating a sudoku:
+  q1) what is the minimum number of cells to filled in order to have a solvable sudoku?
+  q2) what is the coordination of filled cells that have only one unique solution?
+
+  1) i can start with a generated sudoku that is valid which means that every cell is not breaking any sudoku rule and every cell is filled ,
+  then i remove a number of cells in different positions.
+  the number of cells removed is directly related to the difficulty of the puzzle and *the uniqueness of the puzzle*.
+  the position of the cells that is removed is also a factor of the solvability of the puzzle or the uniqueness of the solution for the puzzle.
+
+
+
+
+3) add pencil marks
+
+4) colors and shit
+
+5) menu and ending (GUI)
+
+6) we can add a sudoku puzzle from photo were u upload a photo and it replicates the puzzle just from the photo
+
+7) move with keyboard
+
+
+# new todo :
+
+
+1- make thread stop after finishing by using a bool 
+2- pass blocks to matrix class to be a class variable
+
+
